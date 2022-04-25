@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  db:
+    container_name: postgres
+    build: ./docker/postgres
+    restart: unless-stopped
+    ports:
+      - '5444:5432'
+    volumes:
+      - ./docker/data:/var/lib/postgresql
+      - ./docker/postgres:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: rootroot
+      TZ: "Europe/Moscow"
+
+  app:
+    container_name: java-11
+    build: .
+    restart: unless-stopped
+    ports:
+      - '9005:8000'
+    depends_on:
+      - db
+    environment:
+      TZ: "Europe/Moscow"
+
+
+
+

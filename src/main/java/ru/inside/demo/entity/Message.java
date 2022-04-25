@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Data
 public class Message {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "message_seq", sequenceName = "message_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_seq")
     private Integer id;
     private String username;
     private String message;

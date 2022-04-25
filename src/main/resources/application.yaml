@@ -7,7 +7,7 @@ jwt:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5454/inside2
+    url: jdbc:postgresql://db:5432/inside
     username: root
     password: rootroot
     driverClassName: org.postgresql.Driver
@@ -17,7 +17,7 @@ spring:
       event:
         merge:
           entity_copy_observer: "allow"
-      ddl-auto: create
+      ddl-auto: validate
 
     properties:
       javax:
@@ -27,3 +27,9 @@ spring:
               action: update
               create-target: create.sql
               create-source: metadata
+
+flyway:
+  url: jdbc:postgresql://db:5432/inside
+  user: root
+  password: rootroot
+  baseline-on-migrate: true
