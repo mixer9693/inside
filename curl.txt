@@ -1,0 +1,16 @@
+Получение токена
+curl -d '{"name":"john", "password":"1234"}'\
+    -H "Content-Type: application/json" -X POST http://localhost:9005/api/authenticate
+
+Запись сообщения
+curl -X POST http://localhost:9005/api/messages\
+    -H "Authorization: Bearer <token>"\
+    -H "Content-Type: application/json"\
+    -d '{"name":"ivan", "message":"messageBody"}'
+
+История
+curl -X POST http://localhost:9005/api/messages\
+    -H "Authorization: Bearer <token>"\
+    -H "Content-Type: application/json"\
+    -d '{"name":"ivan", "message":"history 3"}'
+
